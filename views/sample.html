@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Chatroom</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+    </script>
+</head>
+
+<body>
+    <div id="msg"></div>
+    <script>
+        // 當觸發連線建立事件
+        // 發送 greet 事件給伺服器
+        socket.on('connect', function () {
+            socket.emit('greet');
+        })
+
+        socket.on('greet', function (msg) {
+            document.getElementById('msg').innerText = msg;
+        })
+    </script>
+</body>
+
+</html>
